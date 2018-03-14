@@ -29,6 +29,8 @@ class Settings extends ActiveRecord
     {
         return [
             [['key', 'type'], 'required'],
+            [['key', 'name'], 'trim'],
+            [['key'], 'match', 'pattern' => '/^[a-z_]*$/i', 'message' => 'Машинное имя может содержать только латинские буквы и символ подчеркивания'],
             [['type'], 'integer'],
             [['type'], 'in', 'range' => array_keys($this->getTypeList())],
             [['type'], 'default', 'value' => static::TYPE_STRING],

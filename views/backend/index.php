@@ -27,6 +27,7 @@ $model = new Settings;
         //['class' => 'yii\grid\SerialColumn'],
 
         'id',
+        'key',
         'name',
         [
             'attribute' => 'type',
