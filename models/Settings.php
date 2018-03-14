@@ -28,11 +28,11 @@ class Settings extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'type'], 'required'],
+            [['key', 'type'], 'required'],
             [['type'], 'integer'],
             [['type'], 'in', 'range' => array_keys($this->getTypeList())],
             [['type'], 'default', 'value' => static::TYPE_STRING],
-            [['value'], 'safe'],
+            [['name', 'value'], 'safe'],
         ];
     }
 
@@ -40,7 +40,8 @@ class Settings extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Название',
+            'key' => 'Машинное наименование',
+            'name' => 'Наименование',
             'value' => 'Значение',
             'type' => 'Тип',
         ];

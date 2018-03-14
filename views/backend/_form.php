@@ -9,6 +9,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?php echo $form->field($model, 'key')->textInput(['maxlength' => true]); ?>
+
     <?php echo $form->field($model, 'name')->textInput(['maxlength' => true]); ?>
 
     <?php echo $model->isNewRecord ? $form->field($model, 'type')->dropDownList($model->typeList) : $model->getTypeWidget($this, $form); ?>

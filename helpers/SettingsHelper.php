@@ -8,21 +8,32 @@ use yii\web\NotFoundHttpException;
 class SettingsHelper
 {
 
-    public static function get($id, $defaultValue = NULL)
+    /**
+     * @param string $key
+     * @param null $defaultValue
+     * @return null
+     */
+    public static function get($key, $defaultValue = NULL)
     {
         $result = $defaultValue;
 
-        if(is_object($model = static::findModel($id))){
+        if(is_object($model = static::findModel(['key' => $key]))){
             $result = $model->value;
         }
 
         return $result;
     }
 
-    public static function set($id, $value)
+    /**
+     * @param string $key
+     * @param string $value
+     * @return bool
+     * @throws NotFoundHttpException
+     */
+    public static function set($key, $value)
     {
-        if(!is_object($model = static::findModel($id))){
-            throw new NotFoundHttpException('Настройка `' . $id . '` не найдена.');
+        if(!is_object($model = static::findModel(['key' => $key]))){
+            throw new NotFoundHttpException('Настройка `' . $key . '` не найдена.');
         }
 
         $model->value = $value;
@@ -30,9 +41,13 @@ class SettingsHelper
         return $model->save();
     }
 
-    protected static function findModel($id)
+    /**
+     * @param string $key
+     * @return null|static
+     */
+    protected static function findModel($key)
     {
-        return Settings::findOne($id);
+        return Settings::findOne(['key' => $key]);
     }
 
 }
