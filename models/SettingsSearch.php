@@ -12,8 +12,8 @@ class SettingsSearch extends Settings
     public function rules()
     {
         return [
-            [['id', 'name', 'value'], 'safe'],
-            [['type'], 'integer'],
+            [['name', 'value'], 'safe'],
+            [['id','type'], 'integer'],
         ];
     }
 
@@ -36,7 +36,7 @@ class SettingsSearch extends Settings
                 'type' => $this->type,
             ]);
 
-            $query->andFilterWhere(['like', 'id', $this->id])
+            $query->andFilterWhere(['id' => $this->id])
                 ->andFilterWhere(['like', 'name', $this->name])
                 ->andFilterWhere(['like', 'value', $this->value]);
         }

@@ -29,11 +29,8 @@ class Settings extends ActiveRecord
     {
         return [
             [['id', 'name', 'type'], 'required'],
-            [['id', 'name'], 'string', 'max' => 255],
-            [['id', 'name'], 'trim'],
-            [['id'], 'match', 'pattern' => '/^[a-z0-9_\-.:]*$/i'],
-            [['type'], 'integer'],
-            [['type'], 'in', 'range' => array_keys($this->typeList)],
+            [['id', 'type'], 'integer'],
+            [['type'], 'in', 'range' => array_keys($this->getTypeList())],
             [['type'], 'default', 'value' => static::TYPE_STRING],
             [['value'], 'safe'],
         ];
@@ -63,7 +60,8 @@ class Settings extends ActiveRecord
 
     public function getTypeName()
     {
-        return isset($this->typeList[$this->type]) ? $this->typeList[$this->type] : NULL;
+        $typeList = $this->getTypeList();
+        return isset($typeList[$this->type]) ? $typeList[$this->type] : NULL;
     }
 
     public function getTypeWidgetList()
@@ -80,7 +78,8 @@ class Settings extends ActiveRecord
 
     public function getTypeWidgetClassName()
     {
-        return isset($this->typeWidgetList[$this->type]) ? $this->typeWidgetList[$this->type] : NULL;
+        $typeWidgetList = $this->getTypeWidgetList();
+        return isset($typeWidgetList[$this->type]) ? $typeWidgetList[$this->type] : NULL;
     }
 
     public function getTypeWidget($view, $form)

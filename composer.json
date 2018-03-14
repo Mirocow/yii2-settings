@@ -15,8 +15,8 @@
         "plusser/yii2-crud": "*",
         "plusser/yii2-file-manager": "*",
         "kartik-v/yii2-widget-switchinput": "@dev",
-        "2amigos/yii2-date-time-picker-widget": "*",
-        "2amigos/yii2-tinymce-widget": "*"
+        "2amigos/yii2-tinymce-widget": "*",
+        "2amigos/yii2-date-time-picker-widget": "*"
     },
     "autoload": {
         "psr-4": {

@@ -32,7 +32,7 @@ class SettingsHelper
 
     protected static function findModel($id)
     {
-        return Settings::find()->where(['id' => $id])->one();
+        return Settings::findOne($id);
     }
 
 }

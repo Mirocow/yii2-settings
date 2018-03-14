@@ -17,13 +17,11 @@ class m180208_144657_create_settings_table extends Migration
     {
         if(!$this->tableExists()){
             $this->createTable($this->tableName, [
-                'id' => $this->string(255)->notNull(),
-                'name' => $this->string()->notNull()->unique(),
+                'id' => $this->primaryKey(),
+                'name' => $this->string(50)->notNull()->unique(),
                 'value' => $this->db->schema->createColumnSchemaBuilder('LONGTEXT')->null(),
                 'type' => $this->db->schema->createColumnSchemaBuilder('TINYINT', 1)->notNull()->defaultValue(1),
             ]);
-
-            $this->addPrimaryKey('pk_' . $this->tableName, $this->tableName, 'id');
         }
     }
 
