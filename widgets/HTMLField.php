@@ -17,6 +17,12 @@ class HTMLField extends Widget
 
     public function run()
     {
+        $file_picker_callback = '';
+
+        if(isset(FileManagerModule::$instance)) {
+            $file_picker_callback = [ 'file_picker_callback' => \alexantr\elfinder\TinyMCE::getFilePickerCallback(Yii::$app->urlManager->createUrl([ FileManagerModule::$instance->id.'/elfinder/tinymce' ])) ];
+        }
+
         return $this->form->field($this->model, $this->attribute)->widget(TinyMce::className(), [
             'options' => ['rows' => 12],
             'language' => 'ru',
@@ -27,7 +33,7 @@ class HTMLField extends Widget
                     'insertdatetime media table contextmenu paste image',
                 ],
                 'toolbar' => 'undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media',
-                'file_picker_callback' => \alexantr\elfinder\TinyMCE::getFilePickerCallback(Yii::$app->urlManager->createUrl([FileManagerModule::$instance->id . '/elfinder/tinymce'])),
+                $file_picker_callback,
                 'extended_valid_elements' => 'b,i,b/strong,i/em',
             ],
         ]);

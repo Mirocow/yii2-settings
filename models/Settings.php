@@ -28,8 +28,8 @@ class Settings extends ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'name', 'type'], 'required'],
-            [['id', 'type'], 'integer'],
+            [['name', 'type'], 'required'],
+            [['type'], 'integer'],
             [['type'], 'in', 'range' => array_keys($this->getTypeList())],
             [['type'], 'default', 'value' => static::TYPE_STRING],
             [['value'], 'safe'],
