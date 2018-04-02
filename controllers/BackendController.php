@@ -21,7 +21,7 @@ class BackendController extends CRUDController
 
     public function getPermissionPrefix()
     {
-        return 'settings';
+        return $this->module->patternPrefix;
     }
 
 }

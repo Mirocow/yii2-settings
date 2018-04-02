@@ -22,5 +22,8 @@
         "psr-4": {
             "settings\\": ""
         }
+    },
+    "extra": {
+        "bootstrap": "settings\\bootstrap\\Init"
     }
 }
