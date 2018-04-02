@@ -3,7 +3,9 @@ namespace settings\bootstrap;
 
 use yii\base\BootstrapInterface;
 use yii\base\Application;
+use yii\di\Instance;
 use yii\helpers\ArrayHelper;
+use yii\caching\Cache;
 
 class Init implements BootstrapInterface
 {
@@ -16,7 +18,9 @@ class Init implements BootstrapInterface
                 $cache = \Yii::$app->cache;
 
                 if (!$cache) {
-                    $cache = Instance::ensure('cache', Cache::className());
+                    if(\Yii::$app->has('cache')) {
+                        $cache = Instance::ensure('cache', Cache::className());
+                    }
                 }
 
                 $params = [

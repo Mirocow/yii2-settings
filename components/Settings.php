@@ -4,8 +4,6 @@ namespace settings\components;
 
 use yii\base\Component;
 use yii\base\InvalidConfigException;
-use yii\caching\Cache;
-use yii\caching\DbDependency;
 use yii\db\Connection;
 use yii\db\Query;
 use yii\di\Instance;
@@ -42,9 +40,11 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
             return $params;
         }
 
-        if ($this->cache->exists($this->getCacheKey())) {
-            if (is_array($dbParams = $this->cache->get($this->getCacheKey()))) {
-                return $dbParams;
+        if($this->cache) {
+            if ($this->cache->exists($this->getCacheKey())) {
+                if (is_array($dbParams = $this->cache->get($this->getCacheKey()))) {
+                    return $dbParams;
+                }
             }
         }
 
@@ -53,7 +53,11 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
         foreach ($query->each() as $k => $v) {
             $params[$k] = $v['value'];
         }
-        $this->cache->set($this->getCacheKey(), $params, $this->cacheDuration);
+
+        if($this->cache) {
+            $this->cache->set($this->getCacheKey(), $params, $this->cacheDuration);
+        }
+
         return $params;
     }
 
