@@ -3,19 +3,40 @@ namespace settings\bootstrap;
 
 use yii\base\BootstrapInterface;
 use yii\base\Application;
+use yii\helpers\ArrayHelper;
 
 class Init implements BootstrapInterface
 {
     public function bootstrap($app)
     {
         $app->on(Application::EVENT_BEFORE_REQUEST, function () {
-            $params = \Yii::$app->params;
-            if (is_string($params) && is_file($configFilePath = \Yii::getAlias($params))) {
-                $params = require($configFilePath);
+            if(!is_object(\Yii::$app->params)) {
+                $className = \settings\components\Settings::class;
+
+                $cache = \Yii::$app->cache;
+
+                if (!$cache) {
+                    $cache = Instance::ensure('cache', Cache::className());
+                }
+
+                $params = [
+                    'params' => \Yii::$app->params,
+                    'cache'  => $cache,
+                ];
+
+                if (isset(\Yii::$app->components[ 'settings' ])) {
+                    $params = ArrayHelper::merge($params, \Yii::$app->components[ 'settings' ]);
+                }
+
+                if (isset(\Yii::$app->components[ 'settings' ][ 'class' ])) {
+                    $className = \Yii::$app->components[ 'settings' ][ 'class' ];
+                    unset($params[ 'class' ]);
+                }
+
+                \Yii::$container->set($className, $params);
+                \Yii::$container->setSingleton('yii2Settings', $className);
+                \Yii::$app->params = \Yii::$container->get('yii2Settings');
             }
-            \Yii::$container->set('settings\components\Params', $params);
-            \Yii::$container->setSingleton('yii2Settings', 'settings\components\Params');
-            \Yii::$app->params = \Yii::$container->get('yii2Settings');
         });
     }
 }
