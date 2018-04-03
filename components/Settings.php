@@ -48,10 +48,12 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
             }
         }
 
-        $query = $this->getQuery();
+        if(\Yii::$app->db->schema->getTableSchema(\settings\models\Settings::tableName())) {
+            $query = $this->getQuery();
 
-        foreach ($query->each() as $k => $v) {
-            $params[$k] = $v['value'];
+            foreach ($query->each() as $k => $v) {
+                $params[$k] = $v['value'];
+            }
         }
 
         if($this->cache) {
