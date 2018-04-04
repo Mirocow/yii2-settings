@@ -3,20 +3,18 @@
 namespace settings\controllers;
 
 use crud\controllers\CRUDController;
-use settings\models\Settings;
-use settings\models\SettingsSearch;
 
 class BackendController extends CRUDController
 {
 
     public function getModelClass()
     {
-        return Settings::className();
+        return $this->module->model;
     }
 
     public function getModelSearch()
     {
-        return new SettingsSearch;
+        return new $this->module->modelSearch;
     }
 
     public function getPermissionPrefix()

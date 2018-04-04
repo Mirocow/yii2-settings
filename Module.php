@@ -2,6 +2,8 @@
 
 namespace settings;
 
+use settings\models\Settings;
+use settings\models\SettingsSearch;
 use Yii;
 
 class Module extends \yii\base\Module
@@ -9,6 +11,8 @@ class Module extends \yii\base\Module
 
     public $patternPrefix = 'settings';
     public $backendMode = FALSE;
+    public $model = Settings::class;
+    public $modelSearch = SettingsSearch::class;
 
     public function init()
     {
