@@ -127,9 +127,7 @@ class Settings extends ActiveRecord
     protected function unpackValue()
     {
         if(!is_null($this->value)){
-            if(is_serialized( $original)){
-                $this->value = @unserialize($this->value);
-            }
+            $this->value = @unserialize($this->value);
         }
     }
 
