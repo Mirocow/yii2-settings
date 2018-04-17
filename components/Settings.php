@@ -3,6 +3,7 @@
 namespace settings\components;
 
 use yii\base\Component;
+use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\db\Query;
 use yii\helpers\ArrayHelper;
@@ -48,14 +49,16 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
 
         if(\Yii::$app->db->schema->getTableSchema(\settings\models\Settings::tableName())) {
             try {
-                $query = $this->getQuery();
-            } catch (Exception $e) {
+                $options = \settings\models\Settings::find()
+                    ->select([ 'key', 'value', 'group_name' ])
+                    ->indexBy(function ($row) {
+                        return $row[ 'key' ];
+                    })->all();
+            } catch (Exception $e){
                 return $params;
             }
-
             $group_name = 'default';
-
-            foreach ($query->each() as $k => $v) {
+            foreach ($options as $k => $v) {
                 if(!empty($v['group_name'])){
                     $group_name = $v['group_name'];
                 }
@@ -90,18 +93,6 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
     protected function getCacheKey()
     {
         return __CLASS__;
-    }
-
-    /**
-     * @return Query
-     */
-    protected function getQuery()
-    {
-        return \settings\models\Settings::find()
-            ->select(['key', 'value', 'group_name'])
-            ->indexBy(function ($row) {
-                return $row['key'];
-            });
     }
 
     /**
