@@ -9,7 +9,12 @@ use settings\widgets\HTMLField;
 use settings\widgets\SwitchField;
 use settings\widgets\DateTimeField;
 use settings\widgets\ArrayField;
+use yii\helpers\ArrayHelper;
 
+/**
+ * Class Settings
+ * @package settings\models
+ */
 class Settings extends ActiveRecord
 {
 
@@ -35,6 +40,7 @@ class Settings extends ActiveRecord
             [['type'], 'in', 'range' => array_keys($this->getTypeList())],
             [['type'], 'default', 'value' => static::TYPE_STRING],
             [['name', 'value'], 'safe'],
+            [['group_name'], 'string', 'max' => 50],
         ];
     }
 
@@ -46,6 +52,7 @@ class Settings extends ActiveRecord
             'name' => 'Наименование',
             'value' => 'Значение',
             'type' => 'Тип',
+            'group_name' => 'Наименование группы',
         ];
     }
 
@@ -129,6 +136,16 @@ class Settings extends ActiveRecord
         if(!is_null($this->value)){
             $this->value = @unserialize($this->value);
         }
+    }
+
+    public function getGroups()
+    {
+        $groups = Settings::find()->select('group_name')->where(['not', ['group_name' => null]])->distinct()->column();
+        if(!$groups){
+            return ['default' => 'default'];
+        }
+
+        return array_combine($groups, $groups);
     }
 
 }

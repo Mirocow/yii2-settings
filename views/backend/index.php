@@ -30,6 +30,15 @@ $model = new Settings;
         'key',
         'name',
         [
+            'attribute' => 'group_name',
+            'format'    => 'raw',
+            'filter' => $model->groups,
+            'value'     => function ($model) {
+
+                return $model->group_name? $model->group_name: 'default';
+            },
+        ],
+        [
             'attribute' => 'type',
             'filter' => $model->typeList,
             'value' => function($data){

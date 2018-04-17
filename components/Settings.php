@@ -51,8 +51,13 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
         if(\Yii::$app->db->schema->getTableSchema(\settings\models\Settings::tableName())) {
             $query = $this->getQuery();
 
+            $group_name = 'default';
+
             foreach ($query->each() as $k => $v) {
-                $params[$k] = $v['value'];
+                if($v['group_name']){
+                    $group_name = $v['group_name'];
+                }
+                $params["{$group_name}.{$k}"] = $v['value'];
             }
         }
 
@@ -91,7 +96,7 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
     protected function getQuery()
     {
         return \settings\models\Settings::find()
-            ->select(['key', 'value'])
+            ->select(['key', 'value', 'group_name'])
             ->indexBy(function ($row) {
                 return $row['key'];
             });

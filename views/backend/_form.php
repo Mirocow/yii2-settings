@@ -15,6 +15,8 @@ use yii\widgets\ActiveForm;
 
     <?php echo $model->isNewRecord ? $form->field($model, 'type')->dropDownList($model->typeList) : $model->getTypeWidget($this, $form); ?>
 
+    <?php echo $form->field($model, 'group_name')->textInput(['maxlength' => true, 'value' => $model->group_name? $model->group_name: 'default']); ?>
+
     <div class="form-group">
         <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-success', ]); ?>
     </div>

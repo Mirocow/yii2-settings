@@ -6,13 +6,17 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use settings\models\Settings;
 
+/**
+ * Class SettingsSearch
+ * @package settings\models
+ */
 class SettingsSearch extends Settings
 {
 
     public function rules()
     {
         return [
-            [['key', 'name', 'value'], 'safe'],
+            [['key', 'name', 'value', 'group_name'], 'safe'],
             [['id','type'], 'integer'],
         ];
     }
@@ -39,7 +43,8 @@ class SettingsSearch extends Settings
             $query->andFilterWhere(['id' => $this->id])
                 ->andFilterWhere(['like', 'key', $this->key])
                 ->andFilterWhere(['like', 'name', $this->name])
-                ->andFilterWhere(['like', 'value', $this->value]);
+                ->andFilterWhere(['like', 'value', $this->value])
+                ->andFilterWhere(['like', 'group_name', $this->value]);
         }
 
         return $dataProvider;
