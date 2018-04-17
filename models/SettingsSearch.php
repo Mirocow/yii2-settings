@@ -9,6 +9,12 @@ use settings\models\Settings;
 /**
  * Class SettingsSearch
  * @package settings\models
+ *
+ * @property int $id
+ * @property string $key
+ * @property string $name
+ * @property string|array $value
+ * @property string $group_name
  */
 class SettingsSearch extends Settings
 {
@@ -44,7 +50,7 @@ class SettingsSearch extends Settings
                 ->andFilterWhere(['like', 'key', $this->key])
                 ->andFilterWhere(['like', 'name', $this->name])
                 ->andFilterWhere(['like', 'value', $this->value])
-                ->andFilterWhere(['like', 'group_name', $this->value]);
+                ->andFilterWhere(['like', 'group_name', $this->group_name]);
         }
 
         return $dataProvider;

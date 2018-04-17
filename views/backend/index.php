@@ -26,9 +26,21 @@ $model = new Settings;
     'columns' => [
         //['class' => 'yii\grid\SerialColumn'],
 
-        'id',
+        //'id',
+        [
+            'attribute' => 'id',
+            'format' => 'raw',
+            'headerOptions' => ['width' => '50px'],
+        ],
         'key',
         'name',
+        [
+            'attribute' => 'value',
+            'format'    => 'raw',
+            'value'     => function ($model) {
+                return !is_array($model->value)? $model->value: '[Array]';
+            },
+        ],
         [
             'attribute' => 'group_name',
             'format'    => 'raw',
