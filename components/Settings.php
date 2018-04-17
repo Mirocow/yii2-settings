@@ -4,9 +4,7 @@ namespace settings\components;
 
 use yii\base\Component;
 use yii\base\InvalidConfigException;
-use yii\db\Connection;
 use yii\db\Query;
-use yii\di\Instance;
 use yii\helpers\ArrayHelper;
 
 class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
@@ -49,7 +47,11 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
         }
 
         if(\Yii::$app->db->schema->getTableSchema(\settings\models\Settings::tableName())) {
-            $query = $this->getQuery();
+            try {
+                $query = $this->getQuery();
+            } catch (Exception $e) {
+                return $params;
+            }
 
             $group_name = 'default';
 
