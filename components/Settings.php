@@ -56,7 +56,7 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
             $group_name = 'default';
 
             foreach ($query->each() as $k => $v) {
-                if($v['group_name']){
+                if(!empty($v['group_name'])){
                     $group_name = $v['group_name'];
                 }
                 $params["{$group_name}.{$k}"] = $v['value'];
