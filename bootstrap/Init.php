@@ -1,5 +1,5 @@
 <?php
-namespace settings\bootstrap;
+namespace mirocow\settings\bootstrap;
 
 use yii\base\BootstrapInterface;
 use yii\base\Application;

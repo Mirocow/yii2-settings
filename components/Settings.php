@@ -1,6 +1,6 @@
 <?php
 
-namespace settings\components;
+namespace mirocow\settings\components;
 
 use yii\base\Component;
 use yii\base\Exception;

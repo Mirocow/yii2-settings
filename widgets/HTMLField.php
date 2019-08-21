@@ -1,6 +1,6 @@
 <?php 
 
-namespace settings\widgets;
+namespace mirocow\settings\widgets;
 
 use Yii;
 use yii\bootstrap\Widget;

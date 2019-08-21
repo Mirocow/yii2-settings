@@ -1,6 +1,6 @@
 <?php 
 
-namespace settings;
+namespace mirocow\settings;
 
 use settings\models\Settings;
 use settings\models\SettingsSearch;

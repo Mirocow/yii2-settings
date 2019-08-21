@@ -1,6 +1,6 @@
 <?php 
 
-namespace settings\widgets;
+namespace mirocow\settings\widgets;
 
 use yii\bootstrap\Widget;
 use kartik\switchinput\SwitchInput;

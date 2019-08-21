@@ -1,6 +1,6 @@
 <?php 
 
-namespace settings\controllers;
+namespace mirocow\settings\controllers;
 
 use crud\controllers\CRUDController;
 

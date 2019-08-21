@@ -1,6 +1,6 @@
 <?php 
 
-namespace settings\helpers;
+namespace mirocow\settings\helpers;
 
 use settings\models\Settings;
 use settings\widgets\StringField;

@@ -1,5 +1,5 @@
 {
-    "name": "plusser/yii2-settings",
+    "name": "mirocow/yii2-settings",
     "description": "db stored settings",
     "type": "yii2-extension",
     "keywords": ["yii2","extension"],
@@ -8,6 +8,10 @@
         {
             "name": "plusser",
             "email": "plusser@yandex.ru"
+        },
+        {
+            "name": "Mirocow",
+            "email": "mr.mirocow@gmail.com"
         }
     ],
     "require": {
@@ -20,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "settings\\": ""
+            "\\mirocow\\settings\\": ""
         }
     }
 }

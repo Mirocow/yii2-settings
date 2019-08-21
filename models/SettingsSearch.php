@@ -1,6 +1,6 @@
 <?php 
 
-namespace settings\models;
+namespace mirocow\settings\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
