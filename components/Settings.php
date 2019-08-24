@@ -2,6 +2,7 @@
 
 namespace mirocow\settings\components;
 
+use mirocow\settings\models\Settings as SettingsModel;
 use yii\base\Component;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
@@ -47,9 +48,9 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
             }
         }
 
-        if(\Yii::$app->db->schema->getTableSchema(\settings\models\Settings::tableName())) {
+        if(\Yii::$app->db->schema->getTableSchema(SettingsModel::tableName())) {
             try {
-                $options = \settings\models\Settings::find()
+                $options = SettingsModel::find()
                     ->select([ 'key', 'value', 'group_name' ])
                     ->indexBy(function ($row) {
                         return $row[ 'key' ];

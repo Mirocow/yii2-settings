@@ -2,6 +2,7 @@
 
 namespace mirocow\settings\widgets;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\Widget;
 use yii\web\View;
@@ -10,9 +11,14 @@ class ArrayField extends Widget
 {
 
     public $view;
-    public $form;
     public $model;
     public $attribute = 'value';
+    public $defaultOptions = [
+        'data-selector' => 'array-field',
+        'style' => 'margin-bottom: 10px;',
+        'id' => FALSE,
+    ];
+    public $options = [];
 
     public function run()
     {
@@ -53,12 +59,17 @@ $(document).ready(function(){
 
         foreach(((array) $this->model->{$this->attribute} + ['empty-field' => '', ]) as $index => $item){
             $this->model->{$this->attribute} = $item;
-            $result .= $this->form->field($this->model, $this->attribute)->textInput([
+            $options = ArrayHelper::merge($this->defaultOptions, [
                 'data-selector' => 'array-field',
                 'class' => 'form-control ' . (empty($this->model->{$this->attribute}) ? 'empty-field' : 'filled-field'),
                 'style' => 'margin-bottom: 10px;',
                 'id' => FALSE,
             ]);
+            $options = ArrayHelper::merge($options, $this->options);
+            $widget = reset(self::$stack);
+            $result .= $widget->field($this->model, $this->attribute, [
+                'template' => "{input}\n{hint}"
+            ])->textInput($options);
         }
 
         $this->model->{$this->attribute} = $realValue;

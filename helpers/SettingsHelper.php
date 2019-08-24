@@ -2,7 +2,7 @@
 
 namespace mirocow\settings\helpers;
 
-use settings\models\Settings;
+use mirocow\settings\models\Settings;
 use yii\web\NotFoundHttpException;
 
 class SettingsHelper

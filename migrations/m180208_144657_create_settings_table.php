@@ -13,7 +13,7 @@ class m180208_144657_create_settings_table extends Migration
     public function safeUp()
     {
         if(!$this->tableExists()){
-            $this->createTable(\settings\models\Settings::tableName(), [
+            $this->createTable(\mirocow\settings\models\Settings::tableName(), [
                 'id' => $this->primaryKey(),
                 'key' => $this->string(50)->notNull()->unique(),
                 'name' => $this->string(255)->null(),
@@ -28,12 +28,12 @@ class m180208_144657_create_settings_table extends Migration
      */
     public function safeDown()
     {
-        $this->tableExists() AND $this->dropTable(\settings\models\Settings::tableName());
+        $this->tableExists() AND $this->dropTable(Settings::tableName());
     }
 
     protected function tableExists()
     {
-        return !is_null($this->db->schema->getTableSchema(\settings\models\Settings::tableName()));
+        return !is_null($this->db->schema->getTableSchema(Settings::tableName()));
     }
 
 }

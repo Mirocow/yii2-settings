@@ -12,7 +12,7 @@ class m180416_225252_alter_table_settings extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('settings', 'group_name', $this->string(50));
+        $this->addColumn(\mirocow\settings\models\Settings::tableName(), 'group_name', $this->string(50));
     }
 
     /**

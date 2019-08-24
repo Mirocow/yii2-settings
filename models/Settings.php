@@ -2,13 +2,13 @@
 
 namespace mirocow\settings\models;
 
+use mirocow\settings\widgets\StringField;
+use mirocow\settings\widgets\TextField;
+use mirocow\settings\widgets\HTMLField;
+use mirocow\settings\widgets\SwitchField;
+use mirocow\settings\widgets\DateTimeField;
+use mirocow\settings\widgets\ArrayField;
 use yii\db\ActiveRecord;
-use settings\widgets\StringField;
-use settings\widgets\TextField;
-use settings\widgets\HTMLField;
-use settings\widgets\SwitchField;
-use settings\widgets\DateTimeField;
-use settings\widgets\ArrayField;
 use yii\helpers\ArrayHelper;
 
 /**

@@ -4,7 +4,6 @@ namespace mirocow\settings\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use settings\models\Settings;
 
 /**
  * Class SettingsSearch

@@ -1,6 +1,7 @@
 <?php
 namespace mirocow\settings\bootstrap;
 
+use mirocow\settings\components\Settings;
 use yii\base\BootstrapInterface;
 use yii\base\Application;
 use yii\di\Instance;
@@ -13,7 +14,7 @@ class Init implements BootstrapInterface
     {
         $app->on(Application::EVENT_BEFORE_REQUEST, function () {
             if(!is_object(\Yii::$app->params)) {
-                $className = \settings\components\Settings::class;
+                $className = Settings::class;
 
                 $cache = \Yii::$app->cache;
 

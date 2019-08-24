@@ -2,8 +2,8 @@
 
 namespace mirocow\settings;
 
-use settings\models\Settings;
-use settings\models\SettingsSearch;
+use mirocow\settings\models\Settings;
+use mirocow\settings\models\SettingsSearch;
 use Yii;
 
 class Module extends \yii\base\Module

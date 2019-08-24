@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use settings\models\Settings;
+use mirocow\settings\models\Settings;
 
 $this->title = 'Настройки';
 $this->params['breadcrumbs'][] = $this->title;

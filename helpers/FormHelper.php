@@ -2,11 +2,11 @@
 
 namespace mirocow\settings\helpers;
 
-use settings\models\Settings;
-use settings\widgets\StringField;
-use settings\widgets\TextField;
-use settings\widgets\HTMLField;
-use settings\widgets\ArrayField;
+use mirocow\settings\models\Settings;
+use mirocow\settings\widgets\StringField;
+use mirocow\settings\widgets\TextField;
+use mirocow\settings\widgets\HTMLField;
+use mirocow\settings\widgets\ArrayField;
 
 class FormHelper
 {
