@@ -16,7 +16,7 @@ $ php composer.phar require --prefer-dist plusser/yii2-settings "*"
 or add
 
 ```
-"plusser/yii2-settings": "*"
+"mirocow/yii2-settings": "*"
 ```
 
 to the require section of your `composer.json` file.
