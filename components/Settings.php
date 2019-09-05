@@ -224,7 +224,7 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
      * @param $name
      * @param $value
      */
-    private function setValue($name, $value)
+    public function setValue($name, $value)
     {
         ArrayHelper::setValue($this->params, $name, $value);
     }
@@ -233,16 +233,18 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
      * @param $name
      * @return mixed
      */
-    private function getValue($name)
+    public function getValue($name, $default = null)
     {
-        return ArrayHelper::getValue($this->params, $name);
+        $value = ArrayHelper::getValue($this->params, $name);
+        $value = $value ?? $default;
+        return $value;
     }
 
     /**
      * @param $name
      * @return array
      */
-    private function removeValue($name)
+    public function removeValue($name)
     {
         return ArrayHelper::removeValue($this->params, $name);
     }
