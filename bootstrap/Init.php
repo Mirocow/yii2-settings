@@ -40,7 +40,7 @@ class Init implements BootstrapInterface
 
                 \Yii::$container->set($className, $params);
                 \Yii::$container->setSingleton('yii2Settings', $className);
-                \Yii::$app->params = ArrayHelper::merge(\Yii::$app->params, \Yii::$container->get('yii2Settings'));
+                \Yii::$app->params = \Yii::$container->get('yii2Settings');
             }
         });
     }
