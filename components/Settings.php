@@ -248,4 +248,23 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
     {
         return ArrayHelper::removeValue($this->params, $name);
     }
+
+    /**
+     * @param string $name
+     *
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        return $this->getValue($name);
+    }
+
+    /**
+     * @param string $name
+     * @param mixed $value
+     */
+    public function __set($name, $value)
+    {
+        return $this->setValue($name, $value);
+    }
 }
