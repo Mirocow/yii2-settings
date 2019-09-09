@@ -250,6 +250,14 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
     }
 
     /**
+     * @return array
+     */
+    public function getValues()
+    {
+        return $this->params;
+    }
+
+    /**
      * @param string $name
      *
      * @return mixed
@@ -267,4 +275,5 @@ class Settings extends Component implements \ArrayAccess, \Iterator, \Countable
     {
         return $this->setValue($name, $value);
     }
+
 }
