@@ -10,7 +10,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```bash
-$ php composer.phar require --prefer-dist plusser/yii2-settings "*"
+$ php composer.phar require --prefer-dist mirocow/yii2-settings "*"
 ```
 
 or add
@@ -31,4 +31,10 @@ $modules = [
 		],
 ];
 
+```
+
+## Migrations
+
+```bash
+$ php ./yii migrate/up --interactive=0 --migrationPath=@mirocow/settings/migrations
 ```
