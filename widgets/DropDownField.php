@@ -9,6 +9,7 @@ class DropDownField extends Widget
 {
 
     public $view;
+    public $form;
     public $model;
     public $attribute = 'value';
     public $field = 'textarea';

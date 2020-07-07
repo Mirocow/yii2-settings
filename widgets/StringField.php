@@ -9,6 +9,7 @@ class StringField extends Widget
 {
 
     public $view;
+    public $form;
     public $model;
     public $attribute = 'value';
     public $defaultOptions = [

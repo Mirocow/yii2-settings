@@ -9,13 +9,17 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php echo $form->field($model, 'key')->textInput(['maxlength' => true]); ?>
+    <?= $form->field($model, 'key')->textInput(['maxlength' => true]); ?>
 
-    <?php echo $form->field($model, 'name')->textInput(['maxlength' => true]); ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]); ?>
 
-    <?php echo $model->isNewRecord ? $form->field($model, 'type')->dropDownList($model->typeList) : $model->getTypeWidget($this, $form); ?>
+    <?php if($model->isNewRecord):?>
+        <?= $form->field($model, 'type')->dropDownList($model->typeList); ?>
+    <?php else:?>
+        <?= $model->getTypeWidget($this, $form) ?>
+    <?php endif;?>
 
-    <?php echo $form->field($model, 'group_name')->textInput(['maxlength' => true, 'value' => $model->group_name? $model->group_name: 'default']); ?>
+    <?= $form->field($model, 'group_name')->textInput(['maxlength' => true, 'value' => $model->group_name? $model->group_name: 'default']); ?>
 
     <div class="form-group">
         <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-success', ]); ?>

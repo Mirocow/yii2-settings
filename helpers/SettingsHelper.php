@@ -17,7 +17,7 @@ class SettingsHelper
     {
         $result = $defaultValue;
 
-        if(is_object($model = static::findModel(['key' => $key]))){
+        if(is_object($model = static::findModel(['key' => $key, 'group_name' => $group_name]))){
             $result = $model->value;
         }
 
@@ -30,9 +30,9 @@ class SettingsHelper
      * @return bool
      * @throws NotFoundHttpException
      */
-    public static function set($key, $value)
+    public static function set($key, $value, $group_name = 'default')
     {
-        if(!is_object($model = static::findModel(['key' => $key]))){
+        if(!is_object($model = static::findModel(['key' => $key, 'group_name' => $group_name]))){
             throw new NotFoundHttpException('Настройка `' . $key . '` не найдена.');
         }
 
@@ -45,9 +45,9 @@ class SettingsHelper
      * @param string $key
      * @return null|static
      */
-    protected static function findModel($key)
+    protected static function findModel($key, $group_name = 'default')
     {
-        return Settings::findOne(['key' => $key]);
+        return Settings::findOne(['key' => $key, 'group_name' => $group_name]);
     }
 
 }
