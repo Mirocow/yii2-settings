@@ -10,10 +10,11 @@ class SettingsHelper
 
     /**
      * @param string $key
-     * @param null $defaultValue
-     * @return null
+     * @param string $defaultValue
+     * @param string $group_name   
+     * @return string
      */
-    public static function get($key, $defaultValue = NULL)
+    public static function get($key, $defaultValue = NULL, $group_name = 'default')
     {
         $result = $defaultValue;
 
@@ -27,6 +28,7 @@ class SettingsHelper
     /**
      * @param string $key
      * @param string $value
+     * @param string $group_name    
      * @return bool
      * @throws NotFoundHttpException
      */
@@ -43,6 +45,7 @@ class SettingsHelper
 
     /**
      * @param string $key
+     * @param string $group_name     
      * @return null|static
      */
     protected static function findModel($key, $group_name = 'default')
